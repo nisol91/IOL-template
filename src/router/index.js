@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Pagina from '@/components/Pagina'
 import Elenco from '@/components/Elenco'
+import HomeChild from '@/components/HomeChild'
+
 import ElementoSingolo from '@/components/ElementoSingolo'
 
 
@@ -18,6 +20,20 @@ let router = new Router({
 			name: 'Home',
 			component: Home,
 			children: [
+				{
+					path: '',
+					name: '',
+					redirect: {
+						name: 'HomeChild'
+					}
+				},
+				{
+					path: '/home',
+					name: 'HomeChild',
+					components: {
+						inside_menu: HomeChild
+					}
+				},
 				{
 					path: '/pagina',
 					name: 'Pagina',
@@ -35,9 +51,11 @@ let router = new Router({
 			]
 		},
 		{
-			path: '/elenco',
+			path: '/elenco_2',
 			name: 'Elenco',
-			component: Elenco
+			components: {
+				default: Elenco,
+			}
 		},
 		{
 			path: '/elementosingolo/:elementoId',

@@ -39,14 +39,46 @@
       <div class="e_h_main row">
         <div class="e_h_main_sx col-md-8">
           <div class="e_h_main_sx_top_menu">
-            <router-link class="e_nav_el" to="/">Home</router-link>
-            <router-link class="e_nav_el" to="/">Informazioni</router-link>
-            <router-link class="e_nav_el" to="/">Iscrizioni</router-link>
-            <router-link class="e_nav_el" to="/pagina">Risultati</router-link>
-            <router-link class="e_nav_el" to="/elenco">Foto</router-link>
-            <router-link class="e_nav_el" to="/">Video</router-link>
-            <router-link class="e_nav_el" to="/">Recensioni</router-link>
-            <router-link class="e_nav_el" to="/">Community</router-link>
+            <div class="nav_container">
+
+            <router-link class="e_inside_nav_el" to="/home">Home</router-link>
+            </div>
+            <div class="nav_container">
+
+            <router-link class="e_inside_nav_el" to="/">Informazioni</router-link>
+            </div>
+
+            <div class="nav_container">
+
+            <router-link class="e_inside_nav_el" to="/">Iscrizioni</router-link>
+            </div>
+
+            <div class="nav_container">
+
+            <router-link class="e_inside_nav_el" to="/pagina">Risultati</router-link>
+            </div>
+
+            <div class="nav_container">
+
+            <router-link class="e_inside_nav_el" to="/elenco">Foto</router-link>
+            </div>
+
+            <div class="nav_container">
+
+            <router-link class="e_inside_nav_el" to="/">Video</router-link>
+            </div>
+
+            <div class="nav_container">
+
+            <router-link class="e_inside_nav_el" to="/">Recensioni</router-link>
+            </div>
+
+            <div class="nav_container">
+
+            <router-link class="e_inside_nav_el" to="/">Community</router-link>
+            </div>
+
+
           </div>
           <div class="e_h_main_sx_contenuto">
             <main class="App__main">
@@ -68,6 +100,8 @@
 
 <script>
   import JumboBottom from './JumboBottom.vue'
+  import HomeChild from './HomeChild.vue'
+
 
   /* eslint-disable */
   export default {
@@ -272,12 +306,15 @@
     height: 100%;
     /* background: red; */
     padding: 0 !important;
+    margin-top: 20px;
   }
 
   .e_h_main_sx_top_menu {
     width: 100%;
     height: 50px;
     border-bottom: .5px solid grey;
+    display: flex;
+    justify-content: center;
   }
 
   .e_h_main_dx {
@@ -290,5 +327,15 @@
     width: 100%;
     background: lightblue;
     margin-top: 20px;
+  }
+  .e_inside_nav_el {
+    margin: 20px;
+    color: grey!important;
+    height: 100%;
+    font-weight: 800;
+  }
+  .nav_container:hover {
+    color: black!important;
+    border-bottom: 3px solid grey;
   }
 </style>

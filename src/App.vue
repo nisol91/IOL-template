@@ -17,7 +17,7 @@
           <router-link class="e_nav_el" to="/">ENDUmag</router-link>
         </b-nav-item>
         <b-nav-item>
-          <router-link class="e_nav_el" to="/elenco">Servizi</router-link>
+          <router-link class="e_nav_el" to="/elenco_2">Servizi</router-link>
         </b-nav-item>
         <b-nav-item>
           <router-link class="e_nav_el" to="/">About</router-link>
