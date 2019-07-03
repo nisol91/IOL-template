@@ -1,8 +1,8 @@
 <template>
   <div>
     Elenco
-    <div v-for="elemento in elementi" :key="elemento.id">
-      <router-link :to="{ name: 'ElementoSingolo', params: { elementoId: elemento.id, elementoTitolo: elemento.title } }">
+    <div v-for="elemento in elementi" :key="elemento.id" >
+      <router-link :to="{ name: 'ElementoSingolo', params: { elementoId: elemento.id, elementoTitolo: elemento.title } }" style="color: black!important;">
 
         {{elemento.title}}
         {{elemento.id}}

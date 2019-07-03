@@ -16,13 +16,7 @@ Vue.use(BootstrapVue)
 //vue router 
 import router from './router'
 
-//ionic
-// import '@ionic/core/css/core.css';
-// import '@ionic/core/css/ionic.bundle.css';
 
-// import IonicVue from '@ionic/vue';
-
-// Vue.use(IonicVue);
 
 Vue.config.productionTip = false
 

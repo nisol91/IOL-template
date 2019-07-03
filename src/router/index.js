@@ -16,12 +16,23 @@ let router = new Router({
 	routes: [{
 			path: '/',
 			name: 'Home',
-			component: Home
-		},
-		{
-			path: '/pagina',
-			name: 'Pagina',
-			component: Pagina
+			component: Home,
+			children: [
+				{
+					path: '/pagina',
+					name: 'Pagina',
+					components: {
+						inside_menu: Pagina
+					}
+				},
+				{
+					path: '/elenco',
+					name: 'Elenco',
+					components: {
+						inside_menu: Elenco
+					}
+				},
+			]
 		},
 		{
 			path: '/elenco',
