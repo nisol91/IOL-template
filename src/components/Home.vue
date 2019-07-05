@@ -1,8 +1,16 @@
 <template>
   <div class="e_home">
     <div class="e_jumbo">
-      <div class="e_jumbo_cont row">
+      <div class="e_jumbo_cont">
         <div class="e_cont_sx col-md-5">
+          <div class="cont_responsive_foto">
+            <div class="e_cont_sx_bottom_responsive">
+              <div @click="toggleButton(event)" v-for="event in events" :key="event.title" class="e_select_event"
+                v-bind:class="{e_select_event_hover_resp: event.status}">
+                <h6 class="e_event_name">{{event.title}}</h6>
+              </div>
+            </div>
+          </div>
           <div class="e_cont_sx_top">
             <div class="e_event_logo">
               <img
@@ -33,53 +41,19 @@
         </div>
       </div>
     </div>
-
     <div class="e_home_background">
       <jumbo-bottom></jumbo-bottom>
       <div class="e_h_main row">
         <div class="e_h_main_sx col-md-8">
           <div class="e_h_main_sx_top_menu">
-            <div class="nav_container">
+            <div class="nav_container" v-for="item in nav_items" :key="item.title" @mouseover="item.hover = true"
+              @mouseleave="item.hover = false">
 
-            <router-link class="e_inside_nav_el" to="/home">Home</router-link>
+              <router-link class="e_inside_nav_el" :class="{ hover_color: item.hover }" v-bind:to="item.route">
+                {{item.title}}</router-link>
             </div>
-            <div class="nav_container">
-
-            <router-link class="e_inside_nav_el" to="/">Informazioni</router-link>
-            </div>
-
-            <div class="nav_container">
-
-            <router-link class="e_inside_nav_el" to="/">Iscrizioni</router-link>
-            </div>
-
-            <div class="nav_container">
-
-            <router-link class="e_inside_nav_el" to="/pagina">Risultati</router-link>
-            </div>
-
-            <div class="nav_container">
-
-            <router-link class="e_inside_nav_el" to="/elenco">Foto</router-link>
-            </div>
-
-            <div class="nav_container">
-
-            <router-link class="e_inside_nav_el" to="/">Video</router-link>
-            </div>
-
-            <div class="nav_container">
-
-            <router-link class="e_inside_nav_el" to="/">Recensioni</router-link>
-            </div>
-
-            <div class="nav_container">
-
-            <router-link class="e_inside_nav_el" to="/">Community</router-link>
-            </div>
-
-
           </div>
+          <div class="pubblicita_resp"></div>
           <div class="e_h_main_sx_contenuto">
             <main class="App__main">
               <transition name="fade" mode="out-in">
@@ -91,7 +65,14 @@
           </div>
         </div>
         <div class="e_h_main_dx col-md-4">
-          <img src="https://via.placeholder.com/350x800.png/09f/fff" alt="">
+          <div class="pubblicita"></div>
+          <div class="e_help">
+            <h4 class="help_text">Hai bisogno di aiuto?</h4>
+          </div>
+          <div class="e_white">
+
+          </div>
+          <div class="pubblicita"></div>
         </div>
       </div>
     </div>
@@ -108,12 +89,55 @@
     name: 'Home',
     components: {
       JumboBottom,
+      HomeChild,
     },
     props: {
 
     },
     data() {
       return {
+        nav_items: [{
+            title: 'Home',
+            route: '/home',
+            hover: false
+          },
+          {
+            title: 'Informazioni',
+            route: '/elenco',
+            hover: false
+          },
+          {
+            title: 'Iscrizioni',
+            route: '/pagina',
+            hover: false
+          },
+          {
+            title: 'Risultati',
+            route: '/',
+            hover: false
+          },
+          {
+            title: 'Foto',
+            route: '/',
+            hover: false
+          },
+          {
+            title: 'Video',
+            route: '/',
+            hover: false
+          },
+          {
+            title: 'Recensioni',
+            route: '/',
+            hover: false
+          },
+          {
+            title: 'Community',
+            route: '/',
+            hover: false
+          },
+
+        ],
         events: [{
             title: 'Corsa su strada',
             status: false
@@ -142,11 +166,15 @@
       }
     },
     created: function () {
-
     },
     methods: {
       toggleButton(evento) {
         evento.status = !evento.status
+        for (let i = 0; i < this.events.length; i++) {
+          if (this.events[i].title != evento.title) {
+            this.events[i].status = false
+          }
+        }
       }
     },
   }
@@ -181,13 +209,13 @@
 
   .e_jumbo {
     background: grey;
-    height: 410px;
+    height: 500px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding-top: 30px;
+    padding-top: 100px;
   }
 
   .e_jumbo_cont {
@@ -213,6 +241,8 @@
 
   .e_cont_dx {
     background: lightgrey;
+    background: url('https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-size: cover;
     padding: 0 !important;
     /* width: 60%; */
   }
@@ -239,6 +269,7 @@
     margin: 30px;
     border-radius: 50%;
     overflow: hidden;
+    flex-shrink: 0;
   }
 
   .e_event_logo img {
@@ -276,6 +307,7 @@
     justify-content: center;
     align-items: center;
     color: white;
+    cursor: pointer;
   }
 
   .e_event_name {
@@ -289,11 +321,18 @@
     color: #00BCD4;
   }
 
+  .e_select_event_hover_resp {
+    background: transparent;
+    border: 2px solid #00BCD4;
+    color: #00BCD4;
+  }
+
   .e_home_background {
     width: 100%;
-    height: 1000px;
+    height: auto;
     background: lightgrey;
     margin: auto;
+    padding-bottom: 20px
   }
 
   .e_h_main {
@@ -312,30 +351,90 @@
   .e_h_main_sx_top_menu {
     width: 100%;
     height: 50px;
-    border-bottom: .5px solid grey;
     display: flex;
-    justify-content: center;
   }
 
   .e_h_main_dx {
     height: 100%;
-    padding: 20px !important;
+  }
+
+  .pubblicita {
+    width: 100%;
+    height: 400px;
+    background: lightblue;
+    margin: auto;
+    margin-top: 20px;
   }
 
   .e_h_main_sx_contenuto {
     height: 1000px;
     width: 100%;
-    background: lightblue;
+    background: white;
     margin-top: 20px;
   }
+
   .e_inside_nav_el {
     margin: 20px;
-    color: grey!important;
+    color: grey !important;
     height: 100%;
     font-weight: 800;
   }
+
+  .nav_container {
+    cursor: pointer;
+    border-bottom: 2px solid rgb(231, 231, 231);
+     display: flex;
+    justify-content: center;
+  }
+
   .nav_container:hover {
-    color: black!important;
-    border-bottom: 3px solid grey;
+    color: black !important;
+    border-bottom: 3px solid #00BCD4;
+  }
+
+  .hover_color {
+    color: black !important;
+  }
+
+  .e_help {
+    width: 60%;
+    margin: auto;
+    margin-top: 10px;
+    border-bottom: 2px solid #00BCD4;
+  }
+
+  .help_text {
+    font-size: 15px;
+  }
+
+  .e_white {
+    width: 100%;
+    height: 200px;
+    background: white;
+    margin: auto;
+    margin-top: 10px;
+  }
+
+  .cont_responsive_foto {
+    width: 100%;
+    height: 400px;
+    display: none;
+
+  }
+
+  .e_cont_sx_bottom_responsive {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .pubblicita_resp {
+    width: 85%;
+    height: 100px;
+    background: lightcoral;
+    margin: 20px auto;
+    display: none;
   }
 </style>

@@ -2,23 +2,23 @@
   <div class="e_jb_container">
     <div class="e_jb_sx">
       <div class="container_border">
-        <h1 class="e_num_foll">280</h1>
+        <h1 class="e_num_foll" v-for="number in numbers" :key="number.followers">{{number.followers}}</h1>
         <h2 class="e_num_foll e_title_followers">followers</h2>
         <div v-for="pic in pics" :key="pic.title" class="e_event_logo">
           <img v-bind:src="pic.path" alt="">
         </div>
         <div class="e_event_logo e_numeri">
-          <h1 class="e_numb">+112</h1>
+          <h1 class="e_numb" v-for="number in numbers" :key="number.altre_images">+{{number.altre_images}}</h1>
         </div>
       </div>
       <div class="container_border">
-        <h1 class="e_num_foll">115</h1>
+        <h1 class="e_num_foll" v-for="number in numbers" :key="number.recensioni">{{number.recensioni}}</h1>
         <h2 class="e_num_foll e_title_followers">recensioni</h2>
         <div class="e_event_logo ">
         </div>
       </div>
       <div class="container_border">
-        <h1 class="e_num_foll">4</h1>
+        <h1 class="e_num_foll" v-for="number in numbers" :key="number.edizioni">{{number.edizioni}}</h1>
         <h2 class="e_num_foll e_title_followers">edizioni</h2>
       </div>
     </div>
@@ -40,6 +40,14 @@
     },
     data() {
       return {
+        numbers: [
+          {
+            followers: '280',
+            altre_images: '12',
+            recensioni: '115',
+            edizioni: '4',
+          }
+        ],
         pics: [{
             title: 'uno',
             path: 'https://via.placeholder.com/300.png/09f/fff'
@@ -84,17 +92,25 @@
     width: 85%;
     margin: auto;
     display: flex;
+    flex-wrap: wrap!important; 
+    justify-content: space-between;
     background: white;
   }
 
   .e_jb_sx {
     height: 100%;
-    width: 60%;
+    /* width: 60%; */
     display: flex;
     justify-content: flex-start;
     align-items: center;
   }
-
+  .e_jb_dx {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* width: 40%; */
+    height: 100%;
+  }
   .e_num_foll {
     font-weight: 800;
     font-size: 35px;
@@ -138,12 +154,7 @@
     border: 1px solid lightgrey;
     padding: 10px;
   }
-  .e_jb_dx {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 50%;
-  }
+  
   .e_btn {
     background: #00BCD4;
     color: white!important;

@@ -22,7 +22,6 @@ let router = new Router({
 			children: [
 				{
 					path: '',
-					name: '',
 					redirect: {
 						name: 'HomeChild'
 					}
@@ -52,7 +51,7 @@ let router = new Router({
 		},
 		{
 			path: '/elenco_2',
-			name: 'Elenco',
+			name: 'Elenco_2',
 			components: {
 				default: Elenco,
 			}
